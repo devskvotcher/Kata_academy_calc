@@ -26,7 +26,18 @@ public class Main
             Converter converter = new Converter();
 
             String[] actions = {"+", "-", "/", "*"};
-            searchIncorrectInput(input, actions);
+
+            try
+            {
+                if (searchIncorrectInput(input, actions) > 1)
+                {
+                    flag_status=false;
+                    throw new IllegalArgumentException("Количество математических знаков больше 1го");
+                }
+
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
 
             int actionIndex = -1;
             //Ищем знак действия в выражении
@@ -122,7 +133,7 @@ public class Main
         return res;
         }
 
-        public static void searchIncorrectInput(String input, String[] actions)
+        public static int searchIncorrectInput(String input, String[] actions)
         {
            int count=0;
            //Определяем количество арифметическиз знаков.
@@ -136,17 +147,7 @@ public class Main
                    }
                }
            }
-           try
-           {
-               if (count > 1)
-               {
-                   throw new IllegalArgumentException("Количество математических знаков больше 1го");
-               }
-
-           } catch (IllegalArgumentException e) {
-               e.printStackTrace();
-           }
-
+            return count;
         }
         public static void print(String result)
         {
