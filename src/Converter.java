@@ -36,25 +36,23 @@ public class Converter
         //"V"->'V'
         return romanKeyMap.containsKey(number.charAt(0));
     }
-    public int RomanToArabian(String number)
+    public int romanToArabian(String number)
     {
-        int end = number.length()-1;
-        char [] arr=number.toCharArray();
+
+        int end = number.length() - 1;
+        char[] arr = number.toCharArray();
         int arabian;
-        int result=romanKeyMap.get(arr[end]);
-        for (int i = end-1;i>=0;i--)
-        {
-            arabian=romanKeyMap.get(arr[i+1]);
-            if(arabian < romanKeyMap.get(arr[i+1]))
-            {
+        int result = romanKeyMap.get(arr[end]);
+        for (int i = end - 1; i >= 0; i--) {
+            arabian = romanKeyMap.get(arr[i]);
+
+            if (arabian < romanKeyMap.get(arr[i + 1])) {
                 result -= arabian;
-            }
-            else
-            {
+            } else {
                 result += arabian;
             }
-        }
 
+        }
         return result;
     }
   public String intToRoman(int number)
